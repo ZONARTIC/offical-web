@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zonartic Games - Mobile Game Publisher</title>
+  <meta name="description" content="Discover amazing mobile games from Zonartic Games">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <div class="logo" onclick="window.location.href='index.html'">
+        <img src="images/logo.png" alt="Artoon Logo" />
+      </div>
+      
+      <button class="menu-toggle" onclick="toggleMenu(event)" aria-label="Toggle menu" aria-expanded="false">☰</button>
+      
+      <div class="nav-wrapper">
+        <nav class="nav-menu">
+          <ul>
+            <li><a href="index.html" >HOME</a></li>
+            <li><a href="blog.html">BLOG</a></li>
+            <li><a href="mobile-games.html">MOBILE GAMES</a></li>
+            <li><a href="test-games.html"class="active">TEST GAMES</a></li>
+            <li><a href="about.html">ABOUT US</a></li>
+            <li><a href="contact.html">CONTACT US</a></li>
+          </ul>
+          <div class="social-icons">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+              <img src="images/facebook.png" alt="Facebook" />
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              <img src="images/instagram.png" alt="Instagram" />
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+              <img src="images/twitter.png" alt="Twitter" />
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+              <img src="images/youtube.png" alt="YouTube" />
+            </a>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+  
+  <!-- MAIN CONTENT -->
+  <main>
+    <section class="explore">
+      <h2>Explore More Games</h2>
+      
+      <!-- Search Bar -->
+      <div class="search-container">
+        <div class="search-wrapper">
+          <input 
+            type="text" 
+            id="game-search" 
+            class="search-input" 
+            placeholder="Search for games..."
+            autocomplete="off"
+          />
+          <button class="search-button" aria-label="Search">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div id="search-results" class="search-results hidden"></div>
+      </div>
+      
+      <!-- GOOGLE GROUP PANEL WITH EMAIL INVITATION -->
+      <div class="group-panel">
+        <div class="group-panel-content">
+          <h3>
+            <span class="group-icon">👥</span>
+            Tham Gia Nhóm Test Game
+          </h3>
+          <p>Trở thành người đầu tiên trải nghiệm các game mới! Nhập email và chúng tôi sẽ gửi lời mời tham gia nhóm cho bạn.</p>
+          
+          <div class="group-notice">
+            <strong>⚠️ Lưu ý quan trọng:</strong>
+            <ul>
+              <li>Email phải trùng với email Google Play của bạn</li>
+              <li>Bạn sẽ nhận email mời tham gia Google Group</li>
+              <li>Click vào link trong email để hoàn tất việc tham gia</li>
+              <li>Sau khi được duyệt, chờ 5-10 phút để hệ thống cập nhật</li>
+            </ul>
+          </div>
+          
+          <div class="group-form">
+            <div class="form-group">
+              <label for="user-email">Email của bạn (Gmail) *</label>
+              <input 
+                type="email" 
+                id="user-email" 
+                placeholder="example@gmail.com" 
+                required
+              />
+            </div>
+            
+            <div class="form-group">
+              <label for="user-name">Tên của bạn (không bắt buộc)</label>
+              <input 
+                type="text" 
+                id="user-name" 
+                placeholder="Tên của bạn" 
+              />
+            </div>
+            
+            <button class="join-button" id="joinButton" onclick="joinGroupWithAPI()">
+              📧 Gửi Yêu Cầu Tham Gia
+            </button>
+            
+            <div id="success-message" class="success-message"></div>
+            <div id="error-message" class="error-message"></div>
+            
+          </div>
+        </div>
+      </div>
+      
+       <!-- Download Games Section Title -->
+<div class="download-games-title">
+  <div class="title-line"></div>
+  <h3>TẢI GAME BÊN DƯỚI</h3>
+  <div class="title-line"></div>
+</div>
+      
+      <!-- Games Container -->
+      <div id="games-container">
+        <div class="game-card">
+          <div class="game-icon">
+            <img src="images/game-icon.png" alt="Game Icon" />
+          </div>
+          <div class="game-info">
+            <h3>Game Title</h3>
+            <p>Game description will appear here. Add games in games.json file.</p>
+            <div class="download-buttons">
+              <a href="#" onclick="alert('Add game link in games.json'); return false;">
+                GET IT ON Google Play
+              </a>
+            </div>
+          </div>
+          <div class="game-promo">
+            <img src="images/game-promo.jpg" alt="Game Promo" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Zonartic Games. All rights reserved.</p>
+  </footer>
+  <!-- Scroll Down Arrow -->
+  <div class="scroll-arrow" onclick="document.getElementById('games-container').scrollIntoView({behavior: 'smooth'})">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 5v14M19 12l-7 7-7-7"/>
+    </svg>
+  </div>
+  
+  <!-- Floating Contact Button -->
+  <a href="contact.html" class="floating-contact" aria-label="Contact Us">
+  
+  <!-- Floating Contact Button -->
+  <a href="contact.html" class="floating-contact" aria-label="Contact Us">
+    <img src="images/contact-icon.png" alt="Contact" />
+  </a>
+  
+  <!-- JavaScript -->
+  <script>
+    // ==========================================
+    // PROTECTED API CONFIGURATION
+    // ==========================================
+    function getAPI() {
+      const parts = [
+        'paste here',
+        'paste here',
+        'paste here',
+        'paste here',
+        'paste here',
+        'paste here'
+      ];
+      let url = '';
+      for (let i = 0; i < parts.length; i++) {
+        url += atob(parts[i]);
+      }
+      return url;
+    }
+    const API_ENDPOINT = getAPI();
+    
+    // ==========================================
+    // Mobile Menu Toggle
+    // ==========================================
+    function toggleMenu(event) {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      
+      setTimeout(function() {
+        const navWrapper = document.querySelector('.nav-wrapper');
+        const menuToggle = document.querySelector('.menu-toggle');
+        
+        if (!navWrapper || !menuToggle) return;
+        
+        navWrapper.classList.toggle('show');
+        
+        if (navWrapper.classList.contains('show')) {
+          menuToggle.innerHTML = '✕';
+          menuToggle.setAttribute('aria-expanded', 'true');
+        } else {
+          menuToggle.innerHTML = '☰';
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+      }, 50);
+    }
+    
+    document.addEventListener('click', function(event) {
+      if (window.innerWidth <= 768) {
+        setTimeout(function() {
+          const navWrapper = document.querySelector('.nav-wrapper');
+          const menuToggle = document.querySelector('.menu-toggle');
+          const header = document.querySelector('header');
+          
+          if (!navWrapper || !menuToggle || !header) return;
+          
+          if (!header.contains(event.target) && navWrapper.classList.contains('show')) {
+            navWrapper.classList.remove('show');
+            menuToggle.innerHTML = '☰';
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+        }, 50);
+      }
+    });
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      document.body.addEventListener('click', function(event) {
+        if (window.innerWidth <= 768) {
+          const target = event.target.closest('.nav-menu a');
+          
+          if (target) {
+            setTimeout(function() {
+              const navWrapper = document.querySelector('.nav-wrapper');
+              const menuToggle = document.querySelector('.menu-toggle');
+              
+              if (!navWrapper || !menuToggle) return;
+              
+              navWrapper.classList.remove('show');
+              menuToggle.innerHTML = '☰';
+              menuToggle.setAttribute('aria-expanded', 'false');
+            }, 100);
+          }
+        }
+      });
+    });
+    
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() {
+        const navWrapper = document.querySelector('.nav-wrapper');
+        const menuToggle = document.querySelector('.menu-toggle');
+        
+        if (!navWrapper || !menuToggle) return;
+        
+        if (window.innerWidth > 768) {
+          navWrapper.classList.remove('show');
+          menuToggle.innerHTML = '☰';
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+      }, 100);
+    });
+    
+    if (typeof MutationObserver !== 'undefined') {
+      const observer = new MutationObserver(function(mutations) {
+        const menuToggle = document.querySelector('.menu-toggle');
+        if (menuToggle && !menuToggle.hasAttribute('data-listener-attached')) {
+          menuToggle.setAttribute('data-listener-attached', 'true');
+        }
+      });
+      
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    }
+    
+    // ==========================================
+    // SEND GROUP INVITATION VIA EMAIL
+    // ==========================================
+    async function joinGroupWithAPI() {
+      const emailInput = document.getElementById('user-email');
+      const nameInput = document.getElementById('user-name');
+      const joinButton = document.getElementById('joinButton');
+      const successMessage = document.getElementById('success-message');
+      const errorMessage = document.getElementById('error-message');
+      
+      const email = emailInput.value.trim();
+      const name = nameInput.value.trim() || 'Guest';
+      
+      // Hide previous messages
+      successMessage.classList.remove('show');
+      errorMessage.classList.remove('show');
+      successMessage.textContent = '';
+      errorMessage.textContent = '';
+      
+      // Validate email
+      if (!email) {
+        showError('⚠️ Vui lòng nhập email của bạn!');
+        emailInput.focus();
+        return;
+      }
+      
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        showError('⚠️ Email không hợp lệ! Vui lòng nhập đúng định dạng.');
+        emailInput.focus();
+        return;
+      }
+      
+      // Check if Gmail (warning only)
+      if (!email.toLowerCase().endsWith('@gmail.com')) {
+        const confirmNonGmail = confirm(
+          '⚠️ Khuyến nghị sử dụng Gmail để dễ join group và test game.\n\n' +
+          'Email không phải Gmail. Bạn có muốn tiếp tục?'
+        );
+        if (!confirmNonGmail) return;
+      }
+      
+      // Show loading
+      joinButton.disabled = true;
+      joinButton.textContent = '⏳ Đang gửi email...';
+      
+      try {
+        console.log('Sending invitation to:', email);
+        
+        const response = await fetch(API_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'text/plain',
+          },
+          body: JSON.stringify({
+            email: email,
+            name: name
+          })
+        });
+        
+        const result = await response.json();
+        console.log('API Response:', result);
+        
+        if (result.success) {
+          // Mask email for display (show first 3 chars + *** + domain)
+          const maskedEmail = maskEmail(email);
+          
+          showSuccess(
+            `✅ Đã gửi yêu cầu tham gia thành công!\n\n` +
+            `📧 Email mời đã được gửi đến: ${maskedEmail}\n\n` +
+            `Vui lòng kiểm tra hộp thư và làm theo hướng dẫn để hoàn tất việc tham gia nhóm.`
+          );
+          
+          // Clear form
+          emailInput.value = '';
+          nameInput.value = '';
+          
+        } else {
+          showError(`❌ Lỗi: ${result.message || 'Không thể gửi email'}`);
+        }
+        
+      } catch (error) {
+        console.error('Error:', error);
+        showError(
+          'Hệ thống đang load lại, vui lòng thử lại sau vài giây.\n\n' +
+          'Vui lòng kiểm tra:\n' +
+          '1. URL API đúng chưa\n' +
+          '2. Google Apps Script đã deploy chưa\n' +
+          '3. Thử lại sau vài phút'
+        );
+      } finally {
+        joinButton.disabled = false;
+        joinButton.textContent = '📧 Gửi Yêu Cầu Tham Gia';
+      }
+    }
+    
+    // ==========================================
+    // HELPER FUNCTIONS
+    // ==========================================
+    function maskEmail(email) {
+      const [localPart, domain] = email.split('@');
+      if (localPart.length <= 3) {
+        return localPart.charAt(0) + '***@' + domain;
+      }
+      return localPart.substring(0, 3) + '***@' + domain;
+    }
+    
+    function showSuccess(message) {
+      const successMessage = document.getElementById('success-message');
+      successMessage.textContent = message;
+      successMessage.classList.add('show');
+      
+      // Scroll to message
+      successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      
+      // Hide after 15 seconds
+      setTimeout(() => {
+        successMessage.classList.remove('show');
+      }, 15000);
+    }
+    
+    function showError(message) {
+      const errorMessage = document.getElementById('error-message');
+      errorMessage.textContent = message;
+      errorMessage.classList.add('show');
+      
+      // Scroll to message
+      errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      
+      // Hide after 10 seconds
+      setTimeout(() => {
+        errorMessage.classList.remove('show');
+      }, 10000);
+    }
+    
+    // Enter key to submit
+    document.getElementById('user-email').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        joinGroupWithAPI();
+      }
+    });
+    
+    document.getElementById('user-name').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        joinGroupWithAPI();
+      }
+    });
+    // ==========================================
+    // SCROLL ARROW VISIBILITY - THÊM VÀO ĐÂY
+    // ==========================================
+    window.addEventListener('scroll', function() {
+      const scrollArrow = document.querySelector('.scroll-arrow');
+      const footer = document.querySelector('footer');
+      
+      if (!scrollArrow || !footer) return;
+      
+      const footerTop = footer.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+      
+      // Ẩn mũi tên khi footer xuất hiện trên màn hình
+      if (footerTop <= windowHeight) {
+        scrollArrow.classList.add('hidden');
+      } else {
+        scrollArrow.classList.remove('hidden');
+      }
+    });
+    
+    // ==========================================
+    // LOAD GAMES FROM JSON - VỚI LOAD MORE
+    // ==========================================
+    let gamesData = [];
+    let currentPage = 1;
+    const gamesPerPage = 10; // Số games hiển thị mỗi lần
+
+    async function loadGames() {
+      try {
+        const response = await fetch('data/games.json');
+        const allGames = await response.json();
+        
+        // Lọc games đã published và là test games
+        gamesData = allGames.filter(game => game.isPublished && game.isTest);
+        
+        // Reset về trang 1
+        currentPage = 1;
+        renderGames();
+      } catch (error) {
+        console.log('Could not load games:', error);
+      }
+    }
+
+    function renderGames() {
+      const container = document.getElementById('games-container');
+      if (!container) return;
+      
+      if (gamesData.length === 0) {
+        container.innerHTML = '<p style="text-align:center;color:#666;padding:40px;">Chưa có game nào.</p>';
+        return;
+      }
+      
+      // Lấy số games cần hiển thị
+      const gamesToShow = gamesData.slice(0, currentPage * gamesPerPage);
+      
+      // Render game cards
+      let html = gamesToShow.map(game => `
+        <div class="game-card" id="${game.id}">
+          <div class="game-icon">
+            <img src="${game.icon}" alt="${game.name} Icon" loading="lazy" />
+          </div>
+          <div class="game-info">
+            <h3>${game.name}</h3>
+            <p>${game.description}</p>
+            <div class="download-buttons">
+              <a href="${game.testLink}" target="_blank" rel="noopener noreferrer">
+                GET IT ON Google Play
+              </a>
+            </div>
+          </div>
+          <div class="game-promo">
+            <img src="${game.promo}" alt="${game.name} Promo" loading="lazy" />
+          </div>
+        </div>
+      `).join('');
+      
+      // Thêm nút Load More nếu còn games chưa hiển thị
+      if (gamesToShow.length < gamesData.length) {
+        const remaining = gamesData.length - gamesToShow.length;
+        html += `
+          <div class="load-more-container">
+            <button class="load-more-btn" onclick="loadMoreGames()">
+              📱 Xem thêm ${Math.min(gamesPerPage, remaining)} games nữa
+            </button>
+            <p class="games-count">Đang hiển thị ${gamesToShow.length} / ${gamesData.length} games</p>
+          </div>
+        `;
+      }
+      
+      container.innerHTML = html;
+    }
+
+    function loadMoreGames() {
+      currentPage++;
+      renderGames();
+      
+      // Scroll xuống một chút để thấy games mới
+      setTimeout(() => {
+        window.scrollBy({ top: 200, behavior: 'smooth' });
+      }, 100);
+    }
+
+    // ==========================================
+    // GAME SEARCH FUNCTIONALITY
+    // ==========================================
+    const searchInput = document.getElementById('game-search');
+    const searchResults = document.getElementById('search-results');
+    
+    if (searchInput && searchResults) {
+      searchInput.addEventListener('input', function(e) {
+        const query = e.target.value.trim().toLowerCase();
+        
+        if (query.length < 2) {
+          searchResults.classList.add('hidden');
+          searchResults.innerHTML = '';
+          return;
+        }
+        
+        if (gamesData.length === 0) {
+          searchResults.innerHTML = '<div class="search-no-results">Chưa có game nào.</div>';
+          searchResults.classList.remove('hidden');
+          return;
+        }
+        
+        const filtered = gamesData.filter(game => 
+          game.name.toLowerCase().includes(query) ||
+          game.description.toLowerCase().includes(query) ||
+          game.category.toLowerCase().includes(query)
+        );
+        
+        if (filtered.length > 0) {
+          searchResults.innerHTML = filtered.map(game => `
+            <a href="${game.testLink}" class="search-result-item" target="_blank">
+              <img src="${game.icon}" alt="${game.name}" class="search-result-icon" />
+              <div class="search-result-info">
+                <div class="search-result-name">${game.name}</div>
+                <div class="search-result-category">${game.category}</div>
+              </div>
+            </a>
+          `).join('');
+          searchResults.classList.remove('hidden');
+        } else {
+          searchResults.innerHTML = '<div class="search-no-results">Không tìm thấy game</div>';
+          searchResults.classList.remove('hidden');
+        }
+      });
+      
+      document.addEventListener('click', function(e) {
+        if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+          searchResults.classList.add('hidden');
+        }
+      });
+      
+      searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          searchInput.value = '';
+          searchResults.classList.add('hidden');
+        }
+      });
+    }
+    
+    // Load games khi trang load xong
+    document.addEventListener('DOMContentLoaded', loadGames);
+  </script>
+
+</body>
+</html>
