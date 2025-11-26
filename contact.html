@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zonartic Games - Mobile Game Publisher</title>
+  <meta name="description" content="Discover amazing mobile games from Zonartic Games">
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <div class="logo" onclick="window.location.href='index.html'">
+        <img src="images/logo.png" alt="Artoon Logo" />
+      </div>
+      
+      <button class="menu-toggle" onclick="toggleMenu(event)" aria-label="Toggle menu" aria-expanded="false">☰</button>
+      
+      <div class="nav-wrapper">
+        <nav class="nav-menu">
+          <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="blog.html">BLOG</a></li>
+            <li><a href="mobile-games.html">MOBILE GAMES</a></li>
+            <li><a href="test-games.html">TEST GAMES</a></li>
+            <li><a href="about.html">ABOUT US</a></li>
+            <li><a href="contact.html" class="active">CONTACT US</a></li>
+          </ul>
+          <div class="social-icons">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+              <img src="images/facebook.png" alt="Facebook" />
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              <img src="images/instagram.png" alt="Instagram" />
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+              <img src="images/twitter.png" alt="Twitter" />
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+              <img src="images/youtube.png" alt="YouTube" />
+            </a>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+  
+  <!-- MAIN CONTENT -->
+  <main>
+    <section class="explore">
+      <h2>Contact Us</h2>
+      
+      <!-- Contact Form -->
+      <div class="contact-form-container">
+        <form id="contactForm" class="contact-form" onsubmit="handleSubmit(event)">
+          <!-- Email -->
+          <div class="form-group">
+            <label for="contact-email">Email (make sure it's correct) *</label>
+            <input 
+              type="email" 
+              id="contact-email" 
+              name="email"
+              placeholder="mail@example.com" 
+              required
+            />
+          </div>
+          
+          <!-- Full Name -->
+          <div class="form-group">
+            <label for="contact-name">Full name *</label>
+            <input 
+              type="text" 
+              id="contact-name" 
+              name="name"
+              placeholder="Your name"
+              required
+            />
+          </div>
+          
+          <!-- Choose a game (Dropdown) -->
+          <div class="form-group">
+            <label for="contact-game">Choose a game</label>
+            <select id="contact-game" name="game" class="form-select">
+              <option value="">-- Select a game --</option>
+              <!-- Options will be populated from JSON -->
+            </select>
+          </div>
+          
+          <!-- Message -->
+          <div class="form-group">
+            <label for="contact-message">Tell us what you need *</label>
+            <textarea 
+              id="contact-message" 
+              name="message"
+              placeholder="I can't find..."
+              rows="5"
+              maxlength="500"
+              required
+            ></textarea>
+            <div class="char-count">
+              <span id="charCount">0</span> / 500
+            </div>
+          </div>
+          
+          <!-- reCAPTCHA -->
+          <div class="form-group recaptcha-container">
+            <div class="g-recaptcha" id="recaptcha-container"></div>
+          </div>
+          
+          <!-- Submit Button -->
+          <button type="submit" class="submit-button" id="submitButton">
+            Submit
+          </button>
+          
+          <!-- Success/Error Messages -->
+          <div id="form-success-message" class="success-message"></div>
+          <div id="form-error-message" class="error-message"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+  
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Zonartic Games. All rights reserved.</p>
+  </footer>
+  
+  <!-- Floating Contact Button -->
+  <a href="contact.html" class="floating-contact" aria-label="Contact Us">
+    <img src="images/contact-icon.png" alt="Contact" />
+  </a>
+  
+  <!-- JavaScript -->
+  <script>
+    // ==========================================
+    // PROTECTED API CONFIGURATION
+    // ==========================================
+    function getContactAPI() {
+      const parts = [
+        // ⚠️ THÊM BASE64 CỦA BẠN VÀO ĐÂY (6 phần)
+        'paste here',
+        'paste here',
+        'paste here',
+        'paste here',
+        'paste here',
+        'paste here'
+      ];
+      let url = '';
+      for (let i = 0; i < parts.length; i++) {
+        url += atob(parts[i]);
+      }
+      return url;
+    }
+    const API_ENDPOINT = getContactAPI();
+    
+    // ==========================================
+    // PROTECTED RECAPTCHA KEY
+    // ==========================================
+    function getRecaptchaKey() {
+      const parts = [
+        // ⚠️ THÊM BASE64 CỦA BẠN VÀO ĐÂY (3 phần)
+        'paste here',
+        'paste here',
+        'bpaste here'
+      ];
+      let key = '';
+      for (let i = 0; i < parts.length; i++) {
+        key += atob(parts[i]);
+      }
+      return key;
+    }
+    
+    // ==========================================
+    // Mobile Menu Toggle
+    // ==========================================
+    function toggleMenu(event) {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      
+      setTimeout(function() {
+        const navWrapper = document.querySelector('.nav-wrapper');
+        const menuToggle = document.querySelector('.menu-toggle');
+        
+        if (!navWrapper || !menuToggle) return;
+        
+        navWrapper.classList.toggle('show');
+        
+        if (navWrapper.classList.contains('show')) {
+          menuToggle.innerHTML = '✕';
+          menuToggle.setAttribute('aria-expanded', 'true');
+        } else {
+          menuToggle.innerHTML = '☰';
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+      }, 50);
+    }
+    
+    document.addEventListener('click', function(event) {
+      if (window.innerWidth <= 768) {
+        setTimeout(function() {
+          const navWrapper = document.querySelector('.nav-wrapper');
+          const menuToggle = document.querySelector('.menu-toggle');
+          const header = document.querySelector('header');
+          
+          if (!navWrapper || !menuToggle || !header) return;
+          
+          if (!header.contains(event.target) && navWrapper.classList.contains('show')) {
+            navWrapper.classList.remove('show');
+            menuToggle.innerHTML = '☰';
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+        }, 50);
+      }
+    });
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      // ⚠️ SET RECAPTCHA KEY ĐỘNG
+      const recaptchaContainer = document.getElementById('recaptcha-container');
+      if (recaptchaContainer) {
+        recaptchaContainer.setAttribute('data-sitekey', getRecaptchaKey());
+      }
+      
+      document.body.addEventListener('click', function(event) {
+        if (window.innerWidth <= 768) {
+          const target = event.target.closest('.nav-menu a');
+          
+          if (target) {
+            setTimeout(function() {
+              const navWrapper = document.querySelector('.nav-wrapper');
+              const menuToggle = document.querySelector('.menu-toggle');
+              
+              if (!navWrapper || !menuToggle) return;
+              
+              navWrapper.classList.remove('show');
+              menuToggle.innerHTML = '☰';
+              menuToggle.setAttribute('aria-expanded', 'false');
+            }, 100);
+          }
+        }
+      });
+      
+      // ⚠️ LOAD GAMES DROPDOWN
+      loadGamesDropdown();
+      
+      const messageInput = document.getElementById('contact-message');
+      const charCount = document.getElementById('charCount');
+      
+      if (messageInput && charCount) {
+        messageInput.addEventListener('input', function() {
+          charCount.textContent = this.value.length;
+        });
+      }
+    });
+    
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() {
+        const navWrapper = document.querySelector('.nav-wrapper');
+        const menuToggle = document.querySelector('.menu-toggle');
+        
+        if (!navWrapper || !menuToggle) return;
+        
+        if (window.innerWidth > 768) {
+          navWrapper.classList.remove('show');
+          menuToggle.innerHTML = '☰';
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+      }, 100);
+    });
+    
+    if (typeof MutationObserver !== 'undefined') {
+      const observer = new MutationObserver(function(mutations) {
+        const menuToggle = document.querySelector('.menu-toggle');
+        if (menuToggle && !menuToggle.hasAttribute('data-listener-attached')) {
+          menuToggle.setAttribute('data-listener-attached', 'true');
+        }
+      });
+      
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    }
+    
+    // ==========================================
+    // Load Games Dropdown from JSON - ĐÃ CẬP NHẬT
+    // ==========================================
+    async function loadGamesDropdown() {
+      try {
+        const response = await fetch('data/games.json');
+        const allGames = await response.json();
+        
+        // Lọc games đã published
+        const gamesData = allGames.filter(game => game.isPublished);
+        
+        const select = document.getElementById('contact-game');
+        if (select && gamesData.length > 0) {
+          // Xóa option cũ (giữ lại option đầu tiên "-- Select a game --")
+          while (select.options.length > 1) {
+            select.remove(1);
+          }
+          
+          // Thêm các game vào dropdown
+          gamesData.forEach(game => {
+            const option = document.createElement('option');
+            option.value = game.id;
+            option.textContent = game.name;
+            select.appendChild(option);
+          });
+          
+          console.log(`✅ Loaded ${gamesData.length} games into dropdown`);
+        }
+      } catch (error) {
+        console.log('Could not load games for dropdown:', error);
+      }
+    }
+    
+    // ==========================================
+    // Form Submit Handler
+    // ==========================================
+    function handleSubmit(event) {
+      event.preventDefault();
+      
+      const submitButton = document.getElementById('submitButton');
+      const successMessage = document.getElementById('form-success-message');
+      const errorMessage = document.getElementById('form-error-message');
+      
+      successMessage.classList.remove('show');
+      errorMessage.classList.remove('show');
+      
+      const recaptchaResponse = grecaptcha.getResponse();
+      if (!recaptchaResponse) {
+        showFormError('⚠️ Please complete the reCAPTCHA verification');
+        return;
+      }
+      
+      const formData = {
+        email: document.getElementById('contact-email').value,
+        name: document.getElementById('contact-name').value,
+        game: document.getElementById('contact-game').value,
+        message: document.getElementById('contact-message').value,
+        recaptcha: recaptchaResponse
+      };
+      
+      submitButton.disabled = true;
+      submitButton.textContent = '⏳ Sending...';
+      
+      fetch(API_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain',
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          showFormSuccess(data.message);
+          
+          document.getElementById('contactForm').reset();
+          document.getElementById('charCount').textContent = '0';
+          grecaptcha.reset();
+        } else {
+          showFormError('❌ ' + data.message);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        showFormError('❌ Network error. Please check:\n1. API URL is correct\n2. Apps Script is deployed\n3. Try again later');
+      })
+      .finally(() => {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Submit';
+      });
+    }
+    
+    // ==========================================
+    // Helper Functions
+    // ==========================================
+    function showFormSuccess(message) {
+      const successMessage = document.getElementById('form-success-message');
+      successMessage.textContent = message;
+      successMessage.classList.add('show');
+      successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      
+      setTimeout(() => {
+        successMessage.classList.remove('show');
+      }, 10000);
+    }
+    
+    function showFormError(message) {
+      const errorMessage = document.getElementById('form-error-message');
+      errorMessage.textContent = message;
+      errorMessage.classList.add('show');
+      errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      
+      setTimeout(() => {
+        errorMessage.classList.remove('show');
+      }, 8000);
+    }
+  </script>
+</body>
+</html>
