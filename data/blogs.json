@@ -1,0 +1,24 @@
+[
+  {
+    "id": "post-001",
+    "title": "Chào mừng đến với Artoon Games",
+    "excerpt": "Đây là bài viết demo đầu tiên. Bạn có thể sửa nội dung này sau.",
+    "content": "<p>Chào mừng bạn đến với blog của Artoon Games!</p><p>Đây là đoạn nội dung demo. Bạn có thể viết HTML ở đây.</p><h2>Tiêu đề phụ</h2><p>Thêm nội dung bài viết của bạn tại đây.</p>",
+    "image": "images/blog-placeholder.jpg",
+    "category": "News",
+    "author": "Admin",
+    "date": "January 15, 2025",
+    "isPublished": true
+  },
+  {
+    "id": "post-002",
+    "title": "Bài viết demo thứ hai",
+    "excerpt": "Bạn có thể thêm blog mới bằng cách copy object này.",
+    "content": "<p>Nội dung bài viết thứ hai.</p><p>Bạn có thể thêm nhiều đoạn văn, hình ảnh, video...</p>",
+    "image": "images/blog-placeholder.jpg",
+    "category": "Updates",
+    "author": "Admin",
+    "date": "January 20, 2025",
+    "isPublished": true
+  }
+]
