@@ -1,0 +1,26 @@
+[
+  {
+    "id": "game-001",
+    "name": "Game Demo 1",
+    "description": "Đây là game demo đầu tiên. Bạn có thể sửa thông tin này sau.",
+    "category": "Action",
+    "icon": "images/games/game-000-icon.png",
+    "promo": "images/game-promo.jpg",
+    "googlePlay": "https://play.google.com/store",
+    "testLink": "https://play.google.com/store",
+    "isTest": true,
+    "isPublished": true
+  },
+  {
+    "id": "game-002",
+    "name": "Game Demo 2",
+    "description": "Đây là game demo thứ hai. Bạn có thể thêm game mới bằng cách copy object này.",
+    "category": "Puzzle",
+    "icon": "images/game-icon.png",
+    "promo": "images/game-promo.jpg",
+    "googlePlay": "https://play.google.com/store",
+    "testLink": "https://play.google.com/store",
+    "isTest": true,
+    "isPublished": true
+  }
+]
