@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog - Zonartic Games</title>
+  <meta name="description" content="Read the latest news and articles from Artoon Games">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <div class="logo" onclick="window.location.href='index.html'">
+        <img src="images/logo.png" alt="Zonartic Logo" />
+      </div>
+      
+      <button class="menu-toggle" onclick="toggleMenu(event)" aria-label="Toggle menu" aria-expanded="false">☰</button>
+      
+      <div class="nav-wrapper">
+        <nav class="nav-menu">
+          <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="blog.html" class="active">BLOG</a></li>
+            <li><a href="mobile-games.html">MOBILE GAMES</a></li>
+            <li><a href="test-games.html">TEST GAMES</a></li>
+            <li><a href="about.html">ABOUT US</a></li>
+            <li><a href="contact.html">CONTACT US</a></li>
+          </ul>
+          <div class="social-icons">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+              <img src="images/facebook.png" alt="Facebook" />
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              <img src="images/instagram.png" alt="Instagram" />
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+              <img src="images/twitter.png" alt="Twitter" />
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+              <img src="images/youtube.png" alt="YouTube" />
+            </a>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+  
+  <!-- MAIN CONTENT -->
+  <main>
+    <section class="blog-section">
+      <div class="blog-header">
+        <h1>Our Blog</h1>
+        <p>Stay updated with the latest news, tips, and stories from Artoon Games</p>
+      </div>
+      
+      <!-- Blog Posts Grid -->
+      <div id="blog-posts-container" class="blog-grid">
+        <!-- Posts will be loaded from JSON -->
+      </div>
+      
+      <!-- No Posts Message -->
+      <div id="no-posts-message" class="no-posts" style="display: none;">
+        <p>📝 No blog posts yet.</p>
+      </div>
+    </section>
+  </main>
+  
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Zonartic Games. All rights reserved.</p>
+  </footer>
+  
+  <!-- Floating Contact Button -->
+  <a href="contact.html" class="floating-contact" aria-label="Contact Us">
+    <img src="images/contact-icon.png" alt="Contact" />
+  </a>
+  
+  <!-- JavaScript -->
+  <script>
+    // ==========================================
+    // LOAD BLOG POSTS FROM JSON
+    // ==========================================
+    let blogPosts = [];
+    
+    async function loadBlogPosts() {
+      try {
+        const response = await fetch('data/blogs.json');
+        const allPosts = await response.json();
+        
+        // Lọc posts đã published
+        blogPosts = allPosts.filter(post => post.isPublished);
+        
+        renderBlogPosts(blogPosts);
+      } catch (error) {
+        console.log('Could not load blog posts:', error);
+        document.getElementById('no-posts-message').style.display = 'block';
+      }
+    }
+    
+    // ==========================================
+    // RENDER BLOG POSTS
+    // ==========================================
+    function renderBlogPosts(posts) {
+      const container = document.getElementById('blog-posts-container');
+      const noPostsMessage = document.getElementById('no-posts-message');
+      
+      if (!container) return;
+      
+      if (posts.length === 0) {
+        container.innerHTML = '';
+        if (noPostsMessage) noPostsMessage.style.display = 'block';
+        return;
+      }
+      
+      if (noPostsMessage) noPostsMessage.style.display = 'none';
+      
+      container.innerHTML = posts.map(post => `
+        <article class="blog-card" onclick="viewBlogPost('${post.id}')">
+          <div class="blog-card-image">
+            <img src="${post.image}" alt="${post.title}" loading="lazy" />
+            <div class="blog-card-category">${post.category}</div>
+          </div>
+          <div class="blog-card-content">
+            <div class="blog-card-meta">
+              <span class="blog-date">📅 ${post.date}</span>
+              <span class="blog-author">✍️ ${post.author}</span>
+            </div>
+            <h3 class="blog-card-title">${post.title}</h3>
+            <p class="blog-card-excerpt">${post.excerpt}</p>
+            <div class="blog-card-footer">
+              <span class="read-more">Read More →</span>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+    
+    // ==========================================
+    // VIEW BLOG POST DETAIL
+    // ==========================================
+    function viewBlogPost(postId) {
+      window.location.href = `blog-detail.html?id=${postId}`;
+    }
+    
+    // ==========================================
+    // Mobile Menu Toggle
+    // ==========================================
+    function toggleMenu(event) {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      
+      setTimeout(function() {
+        const navWrapper = document.querySelector('.nav-wrapper');
+        const menuToggle = document.querySelector('.menu-toggle');
+        
+        if (!navWrapper || !menuToggle) return;
+        
+        navWrapper.classList.toggle('show');
+        
+        if (navWrapper.classList.contains('show')) {
+          menuToggle.innerHTML = '✕';
+          menuToggle.setAttribute('aria-expanded', 'true');
+        } else {
+          menuToggle.innerHTML = '☰';
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+      }, 50);
+    }
+    
+    document.addEventListener('click', function(event) {
+      if (window.innerWidth <= 768) {
+        setTimeout(function() {
+          const navWrapper = document.querySelector('.nav-wrapper');
+          const menuToggle = document.querySelector('.menu-toggle');
+          const header = document.querySelector('header');
+          
+          if (!navWrapper || !menuToggle || !header) return;
+          
+          if (!header.contains(event.target) && navWrapper.classList.contains('show')) {
+            navWrapper.classList.remove('show');
+            menuToggle.innerHTML = '☰';
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+        }, 50);
+      }
+    });
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      document.body.addEventListener('click', function(event) {
+        if (window.innerWidth <= 768) {
+          const target = event.target.closest('.nav-menu a');
+          
+          if (target) {
+            setTimeout(function() {
+              const navWrapper = document.querySelector('.nav-wrapper');
+              const menuToggle = document.querySelector('.menu-toggle');
+              
+              if (!navWrapper || !menuToggle) return;
+              
+              navWrapper.classList.remove('show');
+              menuToggle.innerHTML = '☰';
+              menuToggle.setAttribute('aria-expanded', 'false');
+            }, 100);
+          }
+        }
+      });
+      
+      // Load blog posts
+      loadBlogPosts();
+    });
+    
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() {
+        const navWrapper = document.querySelector('.nav-wrapper');
+        const menuToggle = document.querySelector('.menu-toggle');
+        
+        if (!navWrapper || !menuToggle) return;
+        
+        if (window.innerWidth > 768) {
+          navWrapper.classList.remove('show');
+          menuToggle.innerHTML = '☰';
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+      }, 100);
+    });
+    
+    if (typeof MutationObserver !== 'undefined') {
+      const observer = new MutationObserver(function(mutations) {
+        const menuToggle = document.querySelector('.menu-toggle');
+        if (menuToggle && !menuToggle.hasAttribute('data-listener-attached')) {
+          menuToggle.setAttribute('data-listener-attached', 'true');
+        }
+      });
+      
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    }
+  </script>
+</body>
+</html>
