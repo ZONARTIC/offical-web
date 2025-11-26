@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zonartic Games - Mobile Game Publisher</title>
+  <meta name="description" content="Discover amazing mobile games from Zonartic Games">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <div class="logo" onclick="window.location.href='index.html'">
+        <img src="images/logo.png" alt="Artoon Logo" />
+      </div>
+      
+      <button class="menu-toggle" onclick="toggleMenu(event)" aria-label="Toggle menu" aria-expanded="false">☰</button>
+      
+      <div class="nav-wrapper">
+        <nav class="nav-menu">
+          <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="blog.html">BLOG</a></li>
+            <li><a href="mobile-games.html" class="active">MOBILE GAMES</a></li>
+            <li><a href="test-games.html">TEST GAMES</a></li>
+            <li><a href="about.html">ABOUT US</a></li>
+            <li><a href="contact.html">CONTACT US</a></li>
+          </ul>
+          <div class="social-icons">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+              <img src="images/facebook.png" alt="Facebook" />
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              <img src="images/instagram.png" alt="Instagram" />
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+              <img src="images/twitter.png" alt="Twitter" />
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+              <img src="images/youtube.png" alt="YouTube" />
+            </a>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+  
+  <!-- MAIN CONTENT -->
+  <main>
+    <section class="explore">
+      <h2>Explore More Games</h2>
+      
+      <!-- Search Bar -->
+      <div class="search-container">
+        <div class="search-wrapper">
+          <input 
+            type="text" 
+            id="game-search" 
+            class="search-input" 
+            placeholder="Search for games..."
+            autocomplete="off"
+          />
+          <button class="search-button" aria-label="Search">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div id="search-results" class="search-results hidden"></div>
+      </div>
+      
+      <!-- Games Container -->
+      <div id="games-container">
+        <div class="game-card">
+          <div class="game-icon">
+            <img src="images/game-icon.png" alt="Game Icon" />
+          </div>
+          <div class="game-info">
+            <h3>Game Title</h3>
+            <p>Game description will appear here. Add games in games.json file.</p>
+            <div class="download-buttons">
+              <a href="#" onclick="alert('Add game link in games.json'); return false;">
+                GET IT ON Google Play
+              </a>
+            </div>
+          </div>
+          <div class="game-promo">
+            <img src="images/game-promo.jpg" alt="Game Promo" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Zonartic Games. All rights reserved.</p>
+  </footer>
+  
+  <!-- Floating Contact Button -->
+  <a href="contact.html" class="floating-contact" aria-label="Contact Us">
+    <img src="images/contact-icon.png" alt="Contact" />
+  </a>
+  
+  <!-- JavaScript -->
+  <script>
+    // ==========================================
+    // Mobile Menu Toggle
+    // ==========================================
+    function toggleMenu(event) {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      
+      setTimeout(function() {
+        const navWrapper = document.querySelector('.nav-wrapper');
+        const menuToggle = document.querySelector('.menu-toggle');
+        
+        if (!navWrapper || !menuToggle) return;
+        
+        navWrapper.classList.toggle('show');
+        
+        if (navWrapper.classList.contains('show')) {
+          menuToggle.innerHTML = '✕';
+          menuToggle.setAttribute('aria-expanded', 'true');
+        } else {
+          menuToggle.innerHTML = '☰';
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+      }, 50);
+    }
+    
+    document.addEventListener('click', function(event) {
+      if (window.innerWidth <= 768) {
+        setTimeout(function() {
+          const navWrapper = document.querySelector('.nav-wrapper');
+          const menuToggle = document.querySelector('.menu-toggle');
+          const header = document.querySelector('header');
+          
+          if (!navWrapper || !menuToggle || !header) return;
+          
+          if (!header.contains(event.target) && navWrapper.classList.contains('show')) {
+            navWrapper.classList.remove('show');
+            menuToggle.innerHTML = '☰';
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+        }, 50);
+      }
+    });
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      document.body.addEventListener('click', function(event) {
+        if (window.innerWidth <= 768) {
+          const target = event.target.closest('.nav-menu a');
+          
+          if (target) {
+            setTimeout(function() {
+              const navWrapper = document.querySelector('.nav-wrapper');
+              const menuToggle = document.querySelector('.menu-toggle');
+              
+              if (!navWrapper || !menuToggle) return;
+              
+              navWrapper.classList.remove('show');
+              menuToggle.innerHTML = '☰';
+              menuToggle.setAttribute('aria-expanded', 'false');
+            }, 100);
+          }
+        }
+      });
+    });
+    
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() {
+        const navWrapper = document.querySelector('.nav-wrapper');
+        const menuToggle = document.querySelector('.menu-toggle');
+        
+        if (!navWrapper || !menuToggle) return;
+        
+        if (window.innerWidth > 768) {
+          navWrapper.classList.remove('show');
+          menuToggle.innerHTML = '☰';
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+      }, 100);
+    });
+    
+    if (typeof MutationObserver !== 'undefined') {
+      const observer = new MutationObserver(function(mutations) {
+        const menuToggle = document.querySelector('.menu-toggle');
+        if (menuToggle && !menuToggle.hasAttribute('data-listener-attached')) {
+          menuToggle.setAttribute('data-listener-attached', 'true');
+        }
+      });
+      
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    }
+    
+    // ==========================================
+    // LOAD GAMES FROM JSON - VỚI LOAD MORE
+    // ==========================================
+    let gamesData = [];
+    let currentPage = 1;
+    const gamesPerPage = 10;
+
+    async function loadGames() {
+      try {
+        const response = await fetch('data/games.json');
+        const allGames = await response.json();
+        
+        // Lọc TẤT CẢ games đã published (không chỉ test)
+        gamesData = allGames.filter(game => game.isPublished);
+        
+        currentPage = 1;
+        renderGames();
+      } catch (error) {
+        console.log('Could not load games:', error);
+      }
+    }
+
+    function renderGames() {
+      const container = document.getElementById('games-container');
+      if (!container) return;
+      
+      if (gamesData.length === 0) {
+        container.innerHTML = '<p style="text-align:center;color:#666;padding:40px;">Chưa có game nào.</p>';
+        return;
+      }
+      
+      const gamesToShow = gamesData.slice(0, currentPage * gamesPerPage);
+      
+      let html = gamesToShow.map(game => `
+        <div class="game-card" id="${game.id}">
+          <div class="game-icon">
+            <img src="${game.icon}" alt="${game.name} Icon" loading="lazy" />
+          </div>
+          <div class="game-info">
+            <h3>${game.name}</h3>
+            <p>${game.description}</p>
+            <div class="download-buttons">
+              <a href="${game.googlePlay}" target="_blank" rel="noopener noreferrer">
+                GET IT ON Google Play
+              </a>
+            </div>
+          </div>
+          <div class="game-promo">
+            <img src="${game.promo}" alt="${game.name} Promo" loading="lazy" />
+          </div>
+        </div>
+      `).join('');
+      
+      if (gamesToShow.length < gamesData.length) {
+        const remaining = gamesData.length - gamesToShow.length;
+        html += `
+          <div class="load-more-container">
+            <button class="load-more-btn" onclick="loadMoreGames()">
+              📱 Xem thêm ${Math.min(gamesPerPage, remaining)} games nữa
+            </button>
+            <p class="games-count">Đang hiển thị ${gamesToShow.length} / ${gamesData.length} games</p>
+          </div>
+        `;
+      }
+      
+      container.innerHTML = html;
+    }
+
+    function loadMoreGames() {
+      currentPage++;
+      renderGames();
+      
+      setTimeout(() => {
+        window.scrollBy({ top: 200, behavior: 'smooth' });
+      }, 100);
+    }
+
+    // ==========================================
+    // GAME SEARCH FUNCTIONALITY
+    // ==========================================
+    const searchInput = document.getElementById('game-search');
+    const searchResults = document.getElementById('search-results');
+    
+    if (searchInput && searchResults) {
+      searchInput.addEventListener('input', function(e) {
+        const query = e.target.value.trim().toLowerCase();
+        
+        if (query.length < 2) {
+          searchResults.classList.add('hidden');
+          searchResults.innerHTML = '';
+          return;
+        }
+        
+        if (gamesData.length === 0) {
+          searchResults.innerHTML = '<div class="search-no-results">Chưa có game nào.</div>';
+          searchResults.classList.remove('hidden');
+          return;
+        }
+        
+        const filtered = gamesData.filter(game => 
+          game.name.toLowerCase().includes(query) ||
+          game.description.toLowerCase().includes(query) ||
+          game.category.toLowerCase().includes(query)
+        );
+        
+        if (filtered.length > 0) {
+          searchResults.innerHTML = filtered.map(game => `
+            <a href="${game.googlePlay}" class="search-result-item" target="_blank">
+              <img src="${game.icon}" alt="${game.name}" class="search-result-icon" />
+              <div class="search-result-info">
+                <div class="search-result-name">${game.name}</div>
+                <div class="search-result-category">${game.category}</div>
+              </div>
+            </a>
+          `).join('');
+          searchResults.classList.remove('hidden');
+        } else {
+          searchResults.innerHTML = '<div class="search-no-results">Không tìm thấy game</div>';
+          searchResults.classList.remove('hidden');
+        }
+      });
+      
+      document.addEventListener('click', function(e) {
+        if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+          searchResults.classList.add('hidden');
+        }
+      });
+      
+      searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          searchInput.value = '';
+          searchResults.classList.add('hidden');
+        }
+      });
+    }
+    
+    // Load games khi trang load xong
+    document.addEventListener('DOMContentLoaded', loadGames);
+  </script>
+</body>
+</html>
