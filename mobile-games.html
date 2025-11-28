@@ -213,6 +213,25 @@
         subtree: true
       });
     }
+    // ==========================================
+    // SCROLL ARROW VISIBILITY - THÊM VÀO ĐÂY
+    // ==========================================
+    window.addEventListener('scroll', function() {
+      const scrollArrow = document.querySelector('.scroll-arrow');
+      const footer = document.querySelector('footer');
+      
+      if (!scrollArrow || !footer) return;
+      
+      const footerTop = footer.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+      
+      // Ẩn mũi tên khi footer xuất hiện trên màn hình
+      if (footerTop <= windowHeight) {
+        scrollArrow.classList.add('hidden');
+      } else {
+        scrollArrow.classList.remove('hidden');
+      }
+    });
     
     // ==========================================
     // LOAD GAMES FROM JSON - VỚI LOAD MORE
