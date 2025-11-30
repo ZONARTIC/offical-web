@@ -10,7 +10,8 @@
     "testLink": "https://play.google.com/store",
     "isTest": true,
     "isPublished": true
-  },{
+  },
+  {
     "id": "project_002",
     "name": "game demo2",
     "description": "Trò chơi kéo rổ hứng dừa phong cách miền quê.",
