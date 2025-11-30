@@ -5,11 +5,11 @@
     "description": "Trò chơi kéo rổ hứng dừa phong cách miền quê.",
     "category": "nhập vai, mô phỏng",
     "icon": "images/games_icon/project_001.png",
-    "promo": "images/game-promo.jpg",
+    "promo": "images/games_promo/project_001.png",
     "googlePlay": "https://play.google.com/store",
     "testLink": "https://play.google.com/store",
     "isTest": true,
-    "isPublished": true
+    "isPublished": false
   },
   {
     "id": "project_002",
@@ -17,11 +17,11 @@
     "description": "Trò chơi kéo rổ hứng dừa phong cách miền quê.",
     "category": "nhập vai, mô phỏng",
     "icon": "images/games_icon/project_002.png",
-    "promo": "images/game-promo.jpg",
+    "promo": "images/games_promo/project_002.png",
     "googlePlay": "https://play.google.com/store",
     "testLink": "https://play.google.com/store",
     "isTest": true,
-    "isPublished": true
+    "isPublished": false
   },
   {
     "id": "project_003",
@@ -29,10 +29,10 @@
     "description": "Trò chơi về chú tắc kè sinh tồn.",
     "category": "Hành động, mô phỏng",
     "icon": "images/games_icon/project_003.png",
-    "promo": "images/game-promo.jpg",
+    "promo": "images/games_promo/project_003.png",
     "googlePlay": "https://play.google.com/store",
     "testLink": "https://play.google.com/store",
     "isTest": true,
-    "isPublished": true
+    "isPublished": false
   }
 ]
