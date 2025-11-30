@@ -8,17 +8,6 @@
     "category": "News",
     "author": "Admin",
     "date": "January 15, 2025",
-    "isPublished": true
-  },
-  {
-    "id": "post-002",
-    "title": "Bài viết demo thứ hai",
-    "excerpt": "Bạn có thể thêm blog mới bằng cách copy object này.",
-    "content": "<p>Nội dung bài viết thứ hai.</p><p>Bạn có thể thêm nhiều đoạn văn, hình ảnh, video...</p>",
-    "image": "images/blog-placeholder.jpg",
-    "category": "Updates",
-    "author": "Admin",
-    "date": "January 20, 2025",
-    "isPublished": true
-  }
+    "isPublished": false
+  
 ]
