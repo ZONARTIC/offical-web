@@ -1,10 +1,21 @@
 [
   {
-    "id": "project-001",
+    "id": "project_001",
     "name": "Hái Dừa",
     "description": "Trò chơi kéo rổ hứng dừa phong cách miền quê.",
     "category": "nhập vai, mô phỏng",
-    "icon": "images/games/game-000-icon.png",
+    "icon": "images/games/project_001.png",
+    "promo": "images/game-promo.jpg",
+    "googlePlay": "https://play.google.com/store",
+    "testLink": "https://play.google.com/store",
+    "isTest": true,
+    "isPublished": true
+  },{
+    "id": "project_002",
+    "name": "game demo2",
+    "description": "Trò chơi kéo rổ hứng dừa phong cách miền quê.",
+    "category": "nhập vai, mô phỏng",
+    "icon": "images/games/project_002.png",
     "promo": "images/game-promo.jpg",
     "googlePlay": "https://play.google.com/store",
     "testLink": "https://play.google.com/store",
@@ -12,11 +23,11 @@
     "isPublished": true
   },
   {
-    "id": "project-002",
+    "id": "project_003",
     "name": "Gecko Hunger",
     "description": "Trò chơi về chú tắc kè sinh tồn.",
     "category": "Hành động, mô phỏng",
-    "icon": "images/game-icon.png",
+    "icon": "images/games/project_003.png",
     "promo": "images/game-promo.jpg",
     "googlePlay": "https://play.google.com/store",
     "testLink": "https://play.google.com/store",
