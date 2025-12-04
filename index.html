@@ -20,7 +20,7 @@
       <div class="nav-wrapper">
         <nav class="nav-menu">
           <ul>
-            <li><a href="index.html" class="active">HOME</a></li>
+            <li><a href="index.html"class="active" >HOME</a></li>
             <li><a href="blog.html">BLOG</a></li>
             <li><a href="mobile-games.html">MOBILE GAMES</a></li>
             <li><a href="test-games.html">TEST GAMES</a></li>
@@ -178,7 +178,7 @@
   </a>
   
   <!-- JavaScript -->
- <script>
+  <script>
     // ==========================================
     // PROTECTED API CONFIGURATION
     // ==========================================
@@ -381,7 +381,10 @@
         console.error('Error:', error);
         showError(
           'Hệ thống đang load lại, vui lòng thử lại sau vài giây.\n\n' +
-          
+          'Vui lòng kiểm tra:\n' +
+          '1. URL API đúng chưa\n' +
+          '2. Google Apps Script đã deploy chưa\n' +
+          '3. Thử lại sau vài phút'
         );
       } finally {
         joinButton.disabled = false;
@@ -606,6 +609,5 @@
     // Load games khi trang load xong
     document.addEventListener('DOMContentLoaded', loadGames);
   </script>
-
 </body>
 </html>
