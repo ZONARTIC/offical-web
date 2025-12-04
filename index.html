@@ -184,12 +184,12 @@
     // ==========================================
     function getAPI() {
       const parts = [
-        '',
-        '',
-        '',
-        '',
-        '',
-        ''
+        'aHR0cHM6Ly9zY3JpcHQuZ29vZw',
+        'bGUuY29tL21hY3Jvcy9zL0FLZg',
+        'eWNieGJQRHhyUkUzUGYxNXNXTA',
+        'R29RVS1RTDcxOC1zNUxCOUcySw',
+        'OGRrb1loNWdhbTVvM1hZRFBKMw',
+        'bFo3X1FzU3ZncWw4L2V4ZWM'
       ];
       let url = '';
       for (let i = 0; i < parts.length; i++) {
@@ -381,10 +381,7 @@
         console.error('Error:', error);
         showError(
           'Hệ thống đang load lại, vui lòng thử lại sau vài giây.\n\n' +
-          'Vui lòng kiểm tra:\n' +
-          '1. URL API đúng chưa\n' +
-          '2. Google Apps Script đã deploy chưa\n' +
-          '3. Thử lại sau vài phút'
+          
         );
       } finally {
         joinButton.disabled = false;
