@@ -295,8 +295,8 @@
         const response = await fetch('data/games.json');
         const allGames = await response.json();
         
-        // Lọc games đã published
-        const gamesData = allGames.filter(game => game.isPublished);
+        // Lọc games đang test
+        const gamesData = allGames.filter(game => game.isTest);
         
         const select = document.getElementById('contact-game');
         if (select && gamesData.length > 0) {
