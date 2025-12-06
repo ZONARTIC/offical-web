@@ -361,19 +361,23 @@
       joinButton.disabled = true;
       joinButton.textContent = '⏳ Đang gửi email...';
       
-      try {
-        console.log('Sending invitation to:', email);
+// --- BẮT ĐẦU KHỐI THAY THẾ ---
+      try {
+        console.log('Sending invitation to:', email);
         
-        const response = await fetch(API_ENDPOINT, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'text/plain',
-          },
-          body: JSON.stringify({
-            email: email,
-            name: name
-          })
-        });
+        // 1. Tạo chuỗi Query String
+        const queryStringBody = `email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}`;
+        
+        const response = await fetch(API_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            // 2. Giữ nguyên text/plain (hoặc bạn có thể dùng text/plain;charset=utf-8)
+            'Content-Type': 'text/plain', 
+          },
+          // 3. Gán chuỗi Query String vào body
+          body: queryStringBody
+        });
+// --- KẾT THÚC KHỐI THAY THẾ ---
         
         const result = await response.json();
         console.log('API Response:', result);
