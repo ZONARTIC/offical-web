@@ -363,21 +363,18 @@
       
 // --- BẮT ĐẦU KHỐI THAY THẾ ---
       try {
-        console.log('Sending invitation to:', email);
-        
-        // Sử dụng URLSearchParams để tự động encode
-        const params = new URLSearchParams({
-          email: email,
-          name: name
-        });
-        
-        const response = await fetch(API_ENDPOINT, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: params.toString()
-        });
+      console.log('Sending invitation to:', email);
+      
+      // Encode manual để tương thích mọi trình duyệt
+      const formBody = 'email=' + encodeURIComponent(email) + '&name=' + encodeURIComponent(name);
+      
+      const response = await fetch(API_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formBody
+      });
 // --- KẾT THÚC KHỐI THAY THẾ ---
         
         const result = await response.json();
