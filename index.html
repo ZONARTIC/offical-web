@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- ✅ THÊM DÒNG NÀY - CSP chống XSS -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://script.google.com;">
+  
   <title>Zonartic Games - Mobile Game Publisher</title>
   <meta name="description" content="Discover amazing mobile games from Zonartic Games">
   <link rel="stylesheet" href="css/style.css" />
