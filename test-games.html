@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <!-- ✅ THÊM DÒNG NÀY - CSP chống XSS -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://script.google.com;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://script.googleusercontent.com;">
   
   <title>Zonartic Games - Mobile Game Publisher</title>
   <meta name="description" content="Discover amazing mobile games from Zonartic Games">
@@ -173,8 +173,7 @@
     </svg>
   </div>
   
-  <!-- Floating Contact Button -->
-  <a href="contact.html" class="floating-contact" aria-label="Contact Us">
+  
   
   <!-- Floating Contact Button -->
   <a href="contact.html" class="floating-contact" aria-label="Contact Us">
@@ -206,10 +205,10 @@
       const parts = [
         'aHR0cHM6Ly9zY3JpcHQuZ29vZw',
         'bGUuY29tL21hY3Jvcy9zL0FLZg',
-        'eWNieFJSMFdueHJSaGd6Z2tIZw',
-        'eFl5bV9OUkZnZU10ZVFrdmVRSg',
-        'WkZZT1UxeWNpOEhFQ0p1SGxZeQ',
-        'dnZxa0RWQVdKa09ML2V4ZWM'
+        'eWNieWhTblI1N09Pak5fVVNhMg',
+        'aG5DWnVnZ1JkQzFBNkpzRDZHZQ',
+        'OFZKc2d2Q21Ock5QajdrVFdzMw',
+        'VnhieWxibjktR2M1L2V4ZWM'
       ];
       let url = '';
       for (let i = 0; i < parts.length; i++) {
@@ -362,19 +361,21 @@
       joinButton.disabled = true;
       joinButton.textContent = '⏳ Đang gửi email...';
       
-      try {
-        console.log('Sending invitation to:', email);
-        
-        const response = await fetch(API_ENDPOINT, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'text/plain',
-          },
-          body: JSON.stringify({
-            email: email,
-            name: name
-          })
-        });
+// --- BẮT ĐẦU KHỐI THAY THẾ ---
+      try {
+      console.log('Sending invitation to:', email);
+      
+      // Encode manual để tương thích mọi trình duyệt
+      const formBody = 'email=' + encodeURIComponent(email) + '&name=' + encodeURIComponent(name);
+      
+      const response = await fetch(API_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formBody
+      });
+// --- KẾT THÚC KHỐI THAY THẾ ---
         
         const result = await response.json();
         console.log('API Response:', result);
@@ -400,11 +401,8 @@
       } catch (error) {
         console.error('Error:', error);
         showError(
-          'Hệ thống đang load lại, vui lòng thử lại sau vài giây.\n\n' +
-          'Vui lòng kiểm tra:\n' +
-          '1. URL API đúng chưa\n' +
-          '2. Google Apps Script đã deploy chưa\n' +
-          '3. Thử lại sau vài phút'
+          'Hệ thống đang load lại, vui lòng thử lại sau vài giây'
+          
         );
       } finally {
         joinButton.disabled = false;
