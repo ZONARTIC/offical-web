@@ -183,6 +183,22 @@
   
   <!-- JavaScript -->
   <script>
+    // XSS PREVENTION - Sanitize Input
+    // ==========================================
+    function sanitizeInput(input) {
+      if (!input) return '';
+      
+      return input
+        .toString()
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#x27;')
+        .replace(/\//g, '&#x2F;');
+    }
+
+    
     // ==========================================
     // PROTECTED API CONFIGURATION
     // ==========================================
