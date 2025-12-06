@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  
   <!-- ✅ THÊM DÒNG NÀY - CSP chống XSS -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://script.google.com;">
   
@@ -183,6 +183,22 @@
   
   <!-- JavaScript -->
   <script>
+    // XSS PREVENTION - Sanitize Input
+    // ==========================================
+    function sanitizeInput(input) {
+      if (!input) return '';
+      
+      return input
+        .toString()
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#x27;')
+        .replace(/\//g, '&#x2F;');
+    }
+
+    
     // ==========================================
     // PROTECTED API CONFIGURATION
     // ==========================================
@@ -190,10 +206,10 @@
       const parts = [
         'aHR0cHM6Ly9zY3JpcHQuZ29vZw',
         'bGUuY29tL21hY3Jvcy9zL0FLZg',
-        'eWNieGJQRHhyUkUzUGYxNXNXTA',
-        'R29RVS1RTDcxOC1zNUxCOUcySw',
-        'OGRrb1loNWdhbTVvM1hZRFBKMw',
-        'bFo3X1FzU3ZncWw4L2V4ZWM'
+        'eWNieFJSMFdueHJSaGd6Z2tIZw',
+        'eFl5bV9OUkZnZU10ZVFrdmVRSg',
+        'WkZZT1UxeWNpOEhFQ0p1SGxZeQ',
+        'dnZxa0RWQVdKa09ML2V4ZWM'
       ];
       let url = '';
       for (let i = 0; i < parts.length; i++) {
@@ -310,8 +326,8 @@
       const successMessage = document.getElementById('success-message');
       const errorMessage = document.getElementById('error-message');
       
-      const email = emailInput.value.trim();
-      const name = nameInput.value.trim() || 'Guest';
+      const email = sanitizeInput(emailInput.value.trim());
+      const name = sanitizeInput(nameInput.value.trim()) || 'Guest';
       
       // Hide previous messages
       successMessage.classList.remove('show');
