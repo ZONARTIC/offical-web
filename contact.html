@@ -366,10 +366,10 @@
       }
       
       const formData = {
-        email: document.getElementById('contact-email').value,
-        name: document.getElementById('contact-name').value,
-        game: document.getElementById('contact-game').value,
-        message: document.getElementById('contact-message').value,
+        email: sanitizeInput(document.getElementById('contact-email').value.trim()),
+        name: sanitizeInput(document.getElementById('contact-name').value.trim()),
+        game: sanitizeInput(document.getElementById('contact-game').value),
+        message: sanitizeInput(document.getElementById('contact-message').value.trim()),
         recaptcha: recaptchaResponse
       };
       
