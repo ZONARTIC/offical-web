@@ -363,20 +363,21 @@
       
 // --- BẮT ĐẦU KHỐI THAY THẾ ---
       try {
-        console.log('Sending invitation to:', email);
+        console.log('Sending invitation to:', email);
         
-        // 1. Tạo chuỗi Query String
-        const queryStringBody = `email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}`;
+        // Sử dụng URLSearchParams để tự động encode
+        const params = new URLSearchParams({
+          email: email,
+          name: name
+        });
         
-        const response = await fetch(API_ENDPOINT, {
-          method: 'POST',
-          headers: {
-            // 2. Giữ nguyên text/plain (hoặc bạn có thể dùng text/plain;charset=utf-8)
-            'Content-Type': 'text/plain', 
-          },
-          // 3. Gán chuỗi Query String vào body
-          body: queryStringBody
-        });
+        const response = await fetch(API_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: params.toString()
+        });
 // --- KẾT THÚC KHỐI THAY THẾ ---
         
         const result = await response.json();
