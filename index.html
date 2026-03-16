@@ -3,62 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pixiv Style - Layout</title>
+    <title>Pixiv Gallery - Social Links</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="main-header">
-        <div class="top-bar">
-            <div class="logo">
-                <img src="your-logo.png" alt="pixiv">
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo-area">
+                <a href="index.html">
+                    <img src="https://via.placeholder.com/120x40?text=LOGO" alt="logo" class="logo">
+                </a>
             </div>
-            <div class="header-right">
-                <div class="info-text">info contact</div>
-                <div class="info-text">info contact</div>
+            <div class="contact-area">
+                <p>info contact</p>
+                <p>info contact</p>
             </div>
         </div>
-        
-        <nav class="tags-bar">
-            <span class="tag-item" style="background: #9a86fd;">tag 1</span>
-            <span class="tag-item" style="background: #4de2b4;">tag 2</span>
-            <span class="tag-item" style="background: #f8a18a;">tag 3</span>
-            <span class="tag-item" style="background: #73e5e5;">tag 4</span>
-            <span class="tag-item" style="background: #fb6a9d;">tag 5</span>
-            <span class="tag-item" style="background: #74b9ff;">tag 6</span>
-        </nav>
     </header>
 
-    <div class="main-wrapper">
-        <main class="gallery-grid">
+    <nav class="tags-nav">
+        <div class="tags-container">
+            <a href="#" class="tag" style="background-color: #1877F2;">
+                <i class="fa-brands fa-facebook"></i> Facebook
+            </a>
+            <a href="#" class="tag" style="background-color: #E4405F;">
+                <i class="fa-brands fa-instagram"></i> Instagram
+            </a>
+            <a href="#" class="tag" style="background-color: #1DA1F2;">
+                <i class="fa-brands fa-twitter"></i> Twitter
+            </a>
+            <a href="#" class="tag" style="background-color: #FF0000;">
+                <i class="fa-brands fa-youtube"></i> Youtube
+            </a>
+            <a href="#" class="tag" style="background-color: #000000;">
+                <i class="fa-brands fa-tiktok"></i> TikTok
+            </a>
+            <a href="#" class="tag" style="background-color: #0077B5;">
+                <i class="fa-brands fa-linkedin"></i> LinkedIn
+            </a>
+        </div>
+    </nav>
+
+    <div class="wrapper">
+        <main class="grid-container">
             
-            <a href="page1.html" class="art-card">
-                <div class="art-image">
-                    <img src="https://via.placeholder.com/400" alt="work">
+            <a href="detail1.html" class="art-card">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/500" alt="art">
                 </div>
-                <div class="art-detail">
-                    <div class="art-title">Morning Express Delivery Post</div>
-                    <div class="art-author">by vania600</div>
-                    <div class="art-meta">⭐ 7840</div>
-                </div>
-            </a>
-
-            <a href="page2.html" class="art-card">
-                <div class="art-image">
-                    <img src="https://via.placeholder.com/400" alt="work">
-                </div>
-                <div class="art-detail">
-                    <div class="art-title">silhouette weapon</div>
-                    <div class="art-author">by JNTHED</div>
-                    <div class="art-meta">⭐ 206</div>
+                <div class="info-wrapper">
+                    <h3 class="title">Morning Express Delivery Post</h3>
+                    <p class="author">by vania600</p>
+                    <div class="meta">⭐ 7840</div>
                 </div>
             </a>
 
-            </main>
+            <a href="detail2.html" class="art-card">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/500" alt="art">
+                </div>
+                <div class="info-wrapper">
+                    <h3 class="title">silhouette weapon</h3>
+                    <p class="author">by JNTHED</p>
+                    <div class="meta">⭐ 206</div>
+                </div>
+            </a>
+
+        </main>
     </div>
 
-    <footer class="bottom-ad">
-        <div class="ad-box">
+    <footer class="ad-footer">
+        <div class="ad-content">
             BANNER ADSENSE HERE
         </div>
     </footer>
