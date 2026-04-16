@@ -41,13 +41,7 @@ header {
   border-bottom: 1px solid #e0e0e0;
 }
 
-.logo {
-  text-decoration: none;
-  cursor: pointer;
-  transition: opacity 0.15s;
-  flex-shrink: 0;
-}
-.logo:hover { opacity: 0.8; }
+
 .logo img {
   height: 80px;
   width: auto;
