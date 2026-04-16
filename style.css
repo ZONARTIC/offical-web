@@ -41,18 +41,11 @@ header {
   border-bottom: 1px solid #e0e0e0;
 }
 
-.logo {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 28px;
-  font-weight: 700;
-  color: #4fc3d0;
-  letter-spacing: 1px;
-  line-height: 1;
-  text-decoration: none;
-  cursor: pointer;
-  transition: opacity 0.15s;
+.logo img {
+  height: 32px;
+  width: auto;
+  display: block;
 }
-.logo:hover { opacity: 0.8; }
 
 .contact-info {
   text-align: right;
