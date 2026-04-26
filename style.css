@@ -331,7 +331,7 @@ header {
 }
 
 .card:nth-child(2){
-  background-image: url("images/truyền-thông-đa-phương-tiện.jpg");
+  background-image: url("images/truyền_thông_đa_phương-tiện.jpg");
   background-size: cover;
   background-position: center;
 }
