@@ -331,13 +331,13 @@ header {
 }
 
 .card:nth-child(2){
-  background-image: url("images/design.jpg");
+  background-image: url("images/truyền thông đa phương tiện.jpg");
   background-size: cover;
   background-position: center;
 }
 
 .card:nth-child(3){
-  background-image: url("images/animation.jpg");
+  background-image: url("images/store.jpg");
   background-size: cover;
   background-position: center;
 }
