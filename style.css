@@ -323,3 +323,27 @@ header {
   color: var(--blue-main);
   white-space: nowrap;
 }
+/* ẢNH NỀN CHO 4 Ô */
+.card:nth-child(1){
+  background-image: url("images/game.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.card:nth-child(2){
+  background-image: url("images/design.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.card:nth-child(3){
+  background-image: url("images/animation.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.card:nth-child(4){
+  background-image: url("images/blog.jpg");
+  background-size: cover;
+  background-position: center;
+}
