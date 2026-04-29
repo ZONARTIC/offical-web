@@ -347,3 +347,9 @@ header {
   background-size: cover;
   background-position: center;
 }
+.card.locked{
+  pointer-events: none;
+  opacity: 0.6;
+  filter: grayscale(35%);
+  cursor: not-allowed;
+}
