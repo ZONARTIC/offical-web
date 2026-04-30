@@ -353,3 +353,22 @@ header {
   filter: grayscale(35%);
   cursor: not-allowed;
 }
+/* LANDING PAGE DẠNG ẢNH DÀI */
+.sub-header-fixed{
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  padding: 10px 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.landing-scroll{
+  width: 100%;
+}
+
+.landing-scroll img{
+  width: 100%;
+  display: block;
+  height: auto;
+}
